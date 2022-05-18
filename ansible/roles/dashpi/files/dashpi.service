@@ -1,0 +1,11 @@
+[Unit]
+Description=Start Dashpi Scripts
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/dashpi/start.sh
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target

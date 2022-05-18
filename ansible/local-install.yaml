@@ -1,0 +1,5 @@
+---
+- name: Install Dashpi
+  hosts: all
+  roles:
+    - dashpi

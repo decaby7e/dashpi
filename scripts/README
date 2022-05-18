@@ -1,0 +1,4 @@
+The following command can be used as an import
+statement to hook into dashpi's library:
+
+source $(dirname $(realpath -s $0))/../lib/lib.sh

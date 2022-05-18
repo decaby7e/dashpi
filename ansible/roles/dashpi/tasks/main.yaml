@@ -1,0 +1,49 @@
+---
+- name: Install required packages
+  apt:
+    name:
+      - xorg
+      - xterm
+      - vlc
+      - imagemagick
+      - git
+
+- name: Install xinitrc
+  copy:
+    src: xinitrc.sh
+    dest: /home/pi/.xinitrc
+    owner: pi
+    group: pi
+    mode: "0755"
+
+- name: Ensure Dashpi isn't installed already
+  file:
+    path: "/home/pi/dashpi"
+    state: absent
+
+- name: Install Dashpi
+  copy:
+    src: "{{ playbook_dir }}/../"
+    dest: "/home/pi/dashpi"
+    owner: pi
+    group: pi
+    mode: "0750"
+
+- name: Install systemd units
+  copy:
+    src: "{{item}}"
+    dest: "/etc/systemd/system/{{item}}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop:
+    - "dashpi.service"
+    - "dashpi.timer"
+
+- name: Enable systemd units
+  systemd:
+    name: "{{item}}"
+    state: enabled
+  loop:
+    - "dashpi.service"
+    - "dashpi.timer"

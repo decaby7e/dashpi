@@ -1,0 +1,1 @@
+dashpi.lan ansible_user=pi ansible_become=yes

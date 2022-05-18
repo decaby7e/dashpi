@@ -1,0 +1,7 @@
+- If video.sh is disowned, it just restarts the process in Xorg...?
+
+- Implement lock expiration?? e.g. xinitrc will watch the lock file and
+  if the datetime in there is longer than some expiration duration,
+  the lock is removed. This would require things like video.sh to
+  continually update this file such that it never gets older than
+  the expiration date.
